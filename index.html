@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NickOfTime — Hip-Hop Production</title>
+<meta name="description" content="NickOfTime Productions — hip-hop instrumentals, mixing &amp; mastering, and feature verses. Built for artists who want that professional edge.">
+<meta name="theme-color" content="#0a0a0a">
+<meta property="og:title" content="NickOfTime — Hip-Hop Production">
+<meta property="og:description" content="Hip-hop instrumentals, mixing &amp; mastering, and feature verses.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23d4af37' d='M12 2L15 8.5L22 9L17 14L18.5 21L12 17.5L5.5 21L7 14L2 9L9 8.5L12 2Z'/%3E%3C/svg%3E">
+<style>
+:root {
+  --gold: #d4af37;
+  --gold-light: #f0d878;
+  --gold-dark: #a08020;
+  --black: #0a0a0a;
+  --black-elevated: #111111;
+  --black-card: #161616;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --text-muted: #666666;
+  --border: #2a2a2a;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 4px 24px rgba(212,175,55,0.08);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--black);
+  color: var(--text-primary);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+/* Animated gold grain background */
+.bg-grain {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+.bg-glow {
+  position: fixed; top: -20%; left: 50%; transform: translateX(-50%);
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,175,55,0.12) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
+}
+.wrap { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 20px; }
+.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 0; border-bottom: 1px solid var(--border); margin-bottom: 32px;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 500; letter-spacing: 1px;
+}
+.nav-logo svg { width: 28px; height: 28px; color: var(--gold); }
+.nav-links { display: flex; gap: 24px; font-size: 14px; color: var(--text-secondary); }
+.nav-links a:hover { color: var(--gold); transition: color 0.2s; }
+.hero {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  padding: 40px 0 48px;
+}
+.hero-img-wrap {
+  position: relative; width: 280px; height: 420px; border-radius: var(--radius);
+  overflow: hidden; border: 1px solid var(--gold-dark); box-shadow: var(--shadow);
+  margin-bottom: 28px;
+}
+.hero-img-wrap::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(212,175,55,0.15), transparent 60%);
+  z-index: 1; pointer-events: none;
+}
+.hero-img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: saturate(0.7) contrast(1.1) brightness(0.95);
+}
+.hero h1 {
+  font-size: 42px; font-weight: 500; letter-spacing: 2px;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  margin-bottom: 8px;
+}
+.hero p { font-size: 16px; color: var(--text-secondary); max-width: 420px; }
+.section-title {
+  font-size: 14px; font-weight: 500; color: var(--gold); text-transform: uppercase; letter-spacing: 2px;
+  margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+}
+.section-title::after {
+  content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--gold-dark), transparent);
+}
+.services { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 48px; }
+.service-card {
+  background: var(--black-card); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 24px; transition: transform 0.2s, border-color 0.2s;
+}
+.service-card:hover { transform: translateY(-2px); border-color: var(--gold-dark); }
+.service-card .icon {
+  width: 40px; height: 40px; color: var(--gold); margin-bottom: 12px;
+  background: rgba(212,175,55,0.08); border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+}
+.service-card h3 { font-size: 17px; font-weight: 500; margin-bottom: 6px; }
+.service-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.5; }
+.price-tag {
+  display: inline-block; margin-top: 12px; padding: 4px 12px; border-radius: 6px;
+  background: rgba(212,175,55,0.1); border: 1px solid var(--gold-dark);
+  font-size: 13px; color: var(--gold); font-weight: 500;
+}
+.video-section { margin-bottom: 48px; }
+.video-player {
+  position: relative; width: 100%; aspect-ratio: 16/9;
+  background: var(--black-elevated); border: 1px solid var(--border); border-radius: var(--radius);
+  overflow: hidden; display: flex; align-items: center; justify-content: center;
+}
+.video-player iframe { width: 100%; height: 100%; border: none; }
+.play-overlay {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.4); cursor: pointer; z-index: 2;
+}
+.play-btn {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: rgba(212,175,55,0.9); color: var(--black);
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.2s, background 0.2s;
+}
+.play-btn:hover { transform: scale(1.08); background: var(--gold-light); }
+.tracklist {
+  margin-top: 16px; display: flex; flex-direction: column; gap: 8px;
+}
+.track {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 16px; background: var(--black-card); border-radius: var(--radius-sm);
+  border: 1px solid transparent; transition: border-color 0.2s;
+}
+.track:hover { border-color: var(--gold-dark); }
+.track-left { display: flex; align-items: center; gap: 12px; }
+.track-play { width: 32px; height: 32px; color: var(--gold); }
+.track-info h4 { font-size: 14px; font-weight: 500; }
+.track-info span { font-size: 12px; color: var(--text-muted); }
+.track-tag {
+  font-size: 12px; color: var(--gold); border: 1px solid var(--gold-dark);
+  padding: 2px 8px; border-radius: 4px;
+}
+.socials { display: flex; gap: 12px; margin-bottom: 48px; flex-wrap: wrap; }
+.social-btn {
+  display: flex; align-items: center; gap: 8px; padding: 10px 18px;
+  background: var(--black-card); border: 1px solid var(--border); border-radius: var(--radius-sm);
+  font-size: 14px; color: var(--text-secondary); transition: all 0.2s;
+}
+.social-btn:hover { border-color: var(--gold); color: var(--gold); background: rgba(212,175,55,0.06); }
+.social-btn svg { width: 18px; height: 18px; }
+.contact { margin-bottom: 48px; }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.contact-card {
+  background: var(--black-card); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 24px; text-align: center; transition: border-color 0.2s;
+}
+.contact-card:hover { border-color: var(--gold-dark); }
+.contact-card .icon-wrap {
+  width: 48px; height: 48px; margin: 0 auto 12px;
+  background: rgba(212,175,55,0.08); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; color: var(--gold);
+}
+.contact-card h3 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
+.contact-card p { font-size: 13px; color: var(--text-secondary); margin-bottom: 12px; }
+.contact-link {
+  display: inline-block; padding: 8px 20px; border-radius: 6px;
+  background: var(--gold); color: var(--black); font-size: 13px; font-weight: 500;
+  transition: background 0.2s;
+}
+.contact-link:hover { background: var(--gold-light); }
+.footer {
+  text-align: center; padding: 24px 0; border-top: 1px solid var(--border);
+  font-size: 12px; color: var(--text-muted);
+}
+@media (max-width: 640px) {
+  .services { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 32px; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="bg-grain"></div>
+<div class="bg-glow"></div>
+
+<div class="wrap">
+  <nav class="nav">
+    <div class="nav-logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M12 2L15 8.5L22 9L17 14L18.5 21L12 17.5L5.5 21L7 14L2 9L9 8.5L12 2Z"/>
+      </svg>
+      NickOfTime
+    </div>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#beats">Beats</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-img-wrap">
+      <!-- Built-in placeholder: swaps in automatically until image.png exists next to this file -->
+      <template id="hero-placeholder">
+        <svg class="hero-img" viewBox="0 0 388 697" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#1a1408"/>
+              <stop offset="100%" stop-color="#0a0a0a"/>
+            </linearGradient>
+            <radialGradient id="g2" cx="50%" cy="40%" r="50%">
+              <stop offset="0%" stop-color="#d4af37" stop-opacity="0.25"/>
+              <stop offset="100%" stop-color="#d4af37" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect width="388" height="697" fill="url(#g1)"/>
+          <circle cx="194" cy="260" r="160" fill="none" stroke="#d4af37" stroke-width="2" opacity="0.3"/>
+          <circle cx="194" cy="260" r="150" fill="none" stroke="#d4af37" stroke-width="1" opacity="0.15" stroke-dasharray="8 6"/>
+          <circle cx="194" cy="260" r="140" fill="url(#g2)"/>
+          <ellipse cx="194" cy="280" rx="75" ry="90" fill="#0f0f0f"/>
+          <path d="M130 360 Q194 340 258 360 L258 500 Q194 520 130 500 Z" fill="#0f0f0f"/>
+          <path d="M120 220 Q194 180 268 220 L275 240 Q194 210 113 240 Z" fill="#0a0a0a"/>
+          <rect x="130" y="240" width="128" height="20" rx="4" fill="#0a0a0a"/>
+          <path d="M110 340 Q194 310 278 340 L290 420 Q300 500 280 580 L108 580 Q88 500 98 420 Z" fill="#111"/>
+          <text x="194" y="620" text-anchor="middle" fill="#d4af37" font-family="sans-serif" font-size="42" font-weight="500" font-style="italic" letter-spacing="2">NickOfTime</text>
+          <text x="194" y="650" text-anchor="middle" fill="#d4af37" font-family="sans-serif" font-size="14" letter-spacing="4" opacity="0.7">PRODUCTIONS</text>
+          <path d="M178 660 L182 670 L186 662 L190 670 L194 660 L198 670 L202 662 L206 670 L210 660 L210 665 L194 675 L178 665 Z" fill="#d4af37" opacity="0.8"/>
+        </svg>
+      </template>
+      <!-- Your artwork: drop image.png next to this file (or edit the src below) -->
+      <img src="image.png" class="hero-img" alt="NickOfTime" onerror="this.outerHTML=document.getElementById('hero-placeholder').innerHTML">
+    </div>
+    <h1>NickOfTime</h1>
+    <p>Hip-hop instrumentals, mixing &amp; mastering, and feature verses. Built for artists who want that professional edge.</p>
+  </section>
+
+  <section id="services">
+    <div class="section-title">Services</div>
+    <div class="services">
+      <div class="service-card">
+        <div class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M8 12.0993C8.49691 12.0993 8.90016 12.5028 8.90039 12.9997V17.9997C8.90039 19.6013 7.60163 20.9001 6 20.9001C4.39837 20.9001 3.09961 19.6013 3.09961 17.9997C3.09984 16.3982 4.39852 15.0993 6 15.0993C6.38939 15.0993 6.76033 15.1778 7.09961 15.317V12.9997C7.09984 12.5028 7.50309 12.0993 8 12.0993ZM6 16.9001C5.39263 16.9001 4.90062 17.3923 4.90039 17.9997C4.90039 18.6072 5.39249 19.0993 6 19.0993C6.60751 19.0993 7.09961 18.6072 7.09961 17.9997C7.09938 17.3923 6.60737 16.9001 6 16.9001Z" fill="currentColor"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M18.627 3.35611C19.8025 3.12106 20.9001 4.02068 20.9004 5.21939V15.9997C20.9004 17.6013 19.6016 18.9001 18 18.9001C16.3984 18.9001 15.0996 17.6013 15.0996 15.9997C15.0998 14.3982 16.3985 13.0993 18 13.0993C18.3894 13.0993 18.7603 13.1778 19.0996 13.317V9.21939C19.0993 9.15657 19.0421 9.10946 18.9805 9.12173L12.6768 10.3825C12.1894 10.4799 11.7148 10.1637 11.6172 9.67642C11.52 9.18922 11.8361 8.71439 12.3232 8.61685L18.627 7.35611C18.7868 7.32415 18.9452 7.31502 19.0996 7.32291V5.21939C19.0993 5.15657 19.0421 5.10946 18.9805 5.12173L12.6768 6.38248C12.1894 6.47994 11.7148 6.16372 11.6172 5.67642C11.52 5.18922 11.8361 4.71439 12.3232 4.61685L18.627 3.35611ZM18 14.9001C17.3926 14.9001 16.9006 15.3923 16.9004 15.9997C16.9004 16.6072 17.3925 17.0993 18 17.0993C18.6075 17.0993 19.0996 16.6072 19.0996 15.9997C19.0994 15.3923 18.6074 14.9001 18 14.9001Z" fill="currentColor"/>
+            <path d="M7.32422 5.38931C7.61669 4.87032 8.38346 4.87015 8.67578 5.38931L8.73047 5.50845L8.89551 5.95376L8.97949 6.1481C9.19937 6.58817 9.57968 6.93145 10.0459 7.10415L10.4912 7.26919C11.127 7.50461 11.1666 8.36217 10.6104 8.67544L10.4912 8.73013L10.0459 8.89517C9.5799 9.06783 9.19939 9.41141 8.97949 9.85123L8.89551 10.0456L8.73047 10.4909C8.49495 11.1267 7.63737 11.1665 7.32422 10.61L7.26953 10.4909L7.10449 10.0456C6.93172 9.57931 6.58767 9.19898 6.14746 8.97916L5.9541 8.89517L5.50879 8.73013C4.83054 8.47903 4.83061 7.52037 5.50879 7.26919L5.9541 7.10415L6.14746 7.02017C6.58757 6.80032 6.93176 6.41995 7.10449 5.95376L7.26953 5.50845L7.32422 5.38931Z" fill="currentColor"/>
+          </svg>
+        </div>
+        <h3>Beats &amp; Instrumentals</h3>
+        <p>Hard-hitting hip-hop beats from boom-bap to trap. Exclusive and non-exclusive licenses available.</p>
+        <span class="price-tag">From $29.99</span>
+      </div>
+
+      <div class="service-card">
+        <div class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7.76253 3.10547C8.25778 3.10552 8.74424 3.23849 9.17073 3.49023L19.533 9.60742C20.8536 10.3869 21.2923 12.0901 20.5174 13.4121C20.2785 13.8195 19.9398 14.1604 19.533 14.4004L9.16975 20.5156C7.84722 21.2958 6.14596 20.8511 5.36995 19.5273C5.11962 19.1003 4.9872 18.6142 4.98714 18.1191V5.88672C4.98717 4.3537 6.22731 3.10547 7.76253 3.10547ZM6.78792 18.1191C6.78798 18.2945 6.83431 18.4664 6.92268 18.6172C7.19639 19.0841 7.79338 19.2377 8.25569 18.9648L18.618 12.8496C18.7607 12.7654 18.8803 12.6458 18.9647 12.502C19.2393 12.0334 19.082 11.4311 18.618 11.1572L8.25569 5.04102C8.10612 4.95273 7.93564 4.9063 7.76253 4.90625C7.22705 4.90625 6.78795 5.34218 6.78792 5.88672V18.1191Z" fill="currentColor"/>
+          </svg>
+        </div>
+        <h3>Mixing &amp; Mastering</h3>
+        <p>Professional vocal mixing, stem mastering, and full track polish. Radio-ready sound guaranteed.</p>
+        <span class="price-tag">From $75 / track</span>
+      </div>
+
+      <div class="service-card">
+        <div class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 9.82422C10 9.03461 10.8724 8.55676 11.5381 8.98145L14.7344 11.0205C15.3361 11.4044 15.3536 12.2771 14.7676 12.6846L11.5713 14.9072C10.9083 15.3682 10.0002 14.8944 10 14.0869V9.82422Z" fill="currentColor"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M18 3.59961C20.1539 3.59961 21.9004 5.34609 21.9004 7.5V16.5C21.9004 18.6539 20.1539 20.4004 18 20.4004H6C3.84609 20.4004 2.09961 18.6539 2.09961 16.5V7.5C2.09961 5.34609 3.84609 3.59961 6 3.59961H18ZM6 5.40039C4.8402 5.40039 3.90039 6.3402 3.90039 7.5V16.5C3.90039 17.6598 4.8402 18.5996 6 18.5996H18C19.1598 18.5996 20.0996 17.6598 20.0996 16.5V7.5C20.0996 6.3402 19.1598 5.40039 18 5.40039H6Z" fill="currentColor"/>
+          </svg>
+        </div>
+        <h3>Feature Verses</h3>
+        <p>Need a verse? I bring energy, bars, and a unique flow to your track. Collab-ready for serious artists.</p>
+        <span class="price-tag">From $150 / verse</span>
+      </div>
+
+      <div class="service-card">
+        <div class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.97427 8.06961C4.99348 7.33581 6.18946 7.1 7.00001 7.1H9.00001C9.49706 7.1 9.90001 7.50294 9.90001 8C9.90001 8.49706 9.49706 8.9 9.00001 8.9H7.00001C6.47755 8.9 5.67353 9.06419 5.02599 9.53039C4.42434 9.96356 3.90001 10.6934 3.90001 12C3.90001 13.3066 4.42434 14.0364 5.02599 14.4696C5.67353 14.9358 6.47755 15.1 7.00001 15.1H9.00001C9.49706 15.1 9.90001 15.5029 9.90001 16C9.90001 16.4971 9.49706 16.9 9.00001 16.9H7.00001C6.18946 16.9 4.99348 16.6642 3.97427 15.9304C2.90917 15.1636 2.10001 13.8934 2.10001 12C2.10001 10.1066 2.90917 8.83644 3.97427 8.06961ZM14.1 8C14.1 7.50294 14.5029 7.1 15 7.1H17C17.8105 7.1 19.0065 7.33581 20.0257 8.06961C21.0908 8.83644 21.9 10.1066 21.9 12C21.9 13.8934 21.0908 15.1636 20.0257 15.9304C19.0065 16.6642 17.8105 16.9 17 16.9H15C14.5029 16.9 14.1 16.4971 14.1 16C14.1 15.5029 14.5029 15.1 15 15.1H17C17.5225 15.1 18.3265 14.9358 18.974 14.4696C19.5757 14.0364 20.1 13.3066 20.1 12C20.1 10.6934 19.5757 9.96356 18.974 9.53039C18.3265 9.06419 17.5225 8.9 17 8.9H15C14.5029 8.9 14.1 8.49706 14.1 8ZM7.10001 12C7.10001 11.5029 7.50295 11.1 8.00001 11.1H16C16.4971 11.1 16.9 11.5029 16.9 12C16.9 12.4971 16.4971 12.9 16 12.9H8.00001C7.50295 12.9 7.10001 12.4971 7.10001 12Z" fill="currentColor"/>
+          </svg>
+        </div>
+        <h3>Sound Engineering</h3>
+        <p>Recording sessions, vocal production, arrangement, and sound design. Full studio treatment.</p>
+        <span class="price-tag">Custom quote</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- YouTube / Latest Drops -->
+  <section id="beats" class="video-section">
+    <div class="section-title">Latest drops</div>
+    <div class="video-player" id="videoPlayer">
+      <div class="play-overlay" onclick="playVideo()">
+        <div class="play-btn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </div>
+      </div>
+      <!-- Video loads on click; set VIDEO_ID in the script at the bottom of this page -->
+      <div id="videoEmbed" style="width:100%;height:100%;display:none;">
+        <iframe id="ytFrame" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="tracklist">
+      <div class="track">
+        <div class="track-left">
+          <svg class="track-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          <div class="track-info">
+            <h4>Midnight in the Studio</h4>
+            <span>Type Beat • 140 BPM</span>
+          </div>
+        </div>
+        <span class="track-tag">$49.99</span>
+      </div>
+      <div class="track">
+        <div class="track-left">
+          <svg class="track-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          <div class="track-info">
+            <h4>Golden Era</h4>
+            <span>Boom Bap • 92 BPM</span>
+          </div>
+        </div>
+        <span class="track-tag">$39.99</span>
+      </div>
+      <div class="track">
+        <div class="track-left">
+          <svg class="track-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          <div class="track-info">
+            <h4>Trap Cathedral</h4>
+            <span>Dark Trap • 150 BPM</span>
+          </div>
+        </div>
+        <span class="track-tag">$44.99</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Socials -->
+  <section>
+    <div class="section-title">Connect</div>
+    <div class="socials">
+      <a href="https://youtube.com/@nickoftime" target="_blank" rel="noopener" class="social-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 00-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.55A3.02 3.02 0 00.5 6.19 31.5 31.5 0 000 12a31.5 31.5 0 00.5 5.81 3.02 3.02 0 002.12 2.14c1.88.55 9.38.55 9.38.55s7.5 0 9.38-.55a3.02 3.02 0 002.12-2.14A31.5 31.5 0 0024 12a31.5 31.5 0 00-.5-5.81zM9.55 15.5V8.5l6.27 3.5-6.27 3.5z"/></svg>
+        YouTube
+      </a>
+      <a href="https://instagram.com/nickoftime" target="_blank" rel="noopener" class="social-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.18 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.7.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.35 2.63 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.63 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95C23.73 2.7 21.3.27 16.95.07 15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zM12 16a4 4 0 110-8 4 4 0 010 8zm7.85-10.4a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg>
+        Instagram
+      </a>
+      <a href="https://twitter.com/nickoftime" target="_blank" rel="noopener" class="social-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        X / Twitter
+      </a>
+      <a href="https://facebook.com/nickoftime" target="_blank" rel="noopener" class="social-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07C0 18.1 4.39 23.1 10.12 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.79-4.7 4.53-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
+        Facebook
+      </a>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <div class="section-title">Work with me</div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#c1)"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 4.1c2.154 0 3.9 1.746 3.9 3.9v8c0 2.154-1.746 3.9-3.9 3.9H6a3.898 3.898 0 01-3.9-3.9V8c0-2.154 1.746-3.9 3.9-3.9h12zM3.9 16c0 1.16.94 2.1 2.1 2.1h12c1.16 0 2.1-.94 2.1-2.1V9.5l-6.564 4.038a2.49 2.49 0 01-2.063.518L3.9 9.387V16zM6 5.9c-.925 0-1.71.599-1.99 1.33l7.421 4.667a.903.903 0 00.961.006L20.02 7.435A2.103 2.103 0 0018 5.9H6z" fill="currentColor"/></g><defs><clipPath id="c1"><rect width="24" height="24" fill="white"/></clipPath></defs>
+          </svg>
+        </div>
+        <h3>Email</h3>
+        <p>For bookings, features, and business inquiries</p>
+        <!-- TODO: replace with your real booking email -->
+        <a href="mailto:nickoftime@email.com" class="contact-link">nickoftime@email.com</a>
+      </div>
+
+      <div class="contact-card">
+        <div class="icon-wrap">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.052 5.809c0-2.4 2.822-3.688 4.635-2.115l7.135 6.194c1.274 1.106 1.289 3.078.032 4.203l-7.136 6.379c-1.804 1.612-4.666.332-4.666-2.088V16.29c-.774.053-1.39.16-1.95.36-.717.255-1.45.702-2.31 1.588-.51.525-1.29.69-1.968.414-.68-.275-1.123-.935-1.123-1.668 0-2.312.566-4.476 1.963-6.138 1.295-1.542 3.14-2.456 5.389-2.762V5.809zm3.455-.756c-.647-.562-1.655-.101-1.655.756v2.958l-.006.101a.903.903 0 01-.994.938l-.403.04c-4.078.491-5.949 3.196-5.949 7.138 2.04-2.1 3.842-2.472 6.35-2.529.553-.013 1.001.438 1.002.99v2.935c0 .81.898 1.262 1.54.842l.125-.096 7.136-6.38a1.351 1.351 0 00.07-1.423l-.08-.077-7.136-6.194z" fill="currentColor"/>
+          </svg>
+        </div>
+        <h3>Share</h3>
+        <p>Send this page to an artist who needs beats</p>
+        <button class="contact-link" onclick="sharePage()" style="border:none;cursor:pointer;">Copy link</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    © <span id="year">2026</span> NickOfTime Productions. All rights reserved.
+  </footer>
+</div>
+
+<script>
+// TODO: replace with your YouTube video ID (the part after watch?v=)
+var VIDEO_ID = 'dQw4w9WgXcQ';
+
+function playVideo() {
+  var embed = document.getElementById('videoEmbed');
+  var frame = document.getElementById('ytFrame');
+  var overlay = document.querySelector('.play-overlay');
+  frame.src = 'https://www.youtube.com/embed/' + VIDEO_ID + '?autoplay=1';
+  embed.style.display = 'block';
+  overlay.style.display = 'none';
+}
+
+function sharePage() {
+  var url = window.location.href;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url)
+      .then(function () { alert('Link copied to clipboard!'); })
+      .catch(function () { copyFallback(url); });
+  } else {
+    copyFallback(url);
+  }
+}
+
+function copyFallback(text) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try {
+    document.execCommand('copy');
+    alert('Link copied to clipboard!');
+  } catch (e) {
+    alert('Copy failed — page URL: ' + text);
+  }
+  document.body.removeChild(ta);
+}
+
+// Keep the footer year current
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
